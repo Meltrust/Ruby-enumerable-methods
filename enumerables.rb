@@ -13,12 +13,13 @@ module Enumerable
 
       idx += 1
     end
+    self
   end
 
-  # my_each_index method
+  # my_each_with_index method
 
-  def my_each_index
-    to_enum(:my_each) unless block_given?
+  def my_each_with_index
+    return to_enum(:my_each_index) unless block_given?
 
     each_idx = 0
 
@@ -31,7 +32,7 @@ module Enumerable
 
   # my_select method
   def my_select
-    to_enum(:my_each) unless block_given?
+    return to_enum(:my_select) unless block_given?
   end
 end
 
@@ -40,18 +41,15 @@ puts 'Testing my each against [1, 2, 3]'
 [1, 2, 3].my_each do |n|
   puts n
 end
-puts "\n"
 
 # testing my_each_index
 puts 'Testing my each against %w[cat dog shark]'
-%w[cat dog shark].my_each_index do |idx, each_idx|
-  puts "item: #{idx} index: #{each_idx}"
+%w[cat dog shark].my_each_with_index do |idx, each_idx|
+  p "item: #{idx} index: #{each_idx}"
 end
-puts "\n"
 
 # testing my_select
 puts 'Testing my select against [1, 2, 3, 4, 5]=> select even numbers'
-
 [1, 2, 3, 4, 5].select do |num|
   puts num if num.even?
 end
