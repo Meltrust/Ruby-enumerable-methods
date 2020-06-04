@@ -33,6 +33,13 @@ module Enumerable
   # my_select method
   def my_select
     return to_enum(:my_select) unless block_given?
+
+    select_result = [] if self.class == Array
+    select_result = {} if self.class == Hash
+
+    my_each do |x|
+      select_result.push(x) if yield(x)
+    end
   end
 end
 
@@ -50,6 +57,6 @@ end
 
 # testing my_select
 puts 'Testing my select against [1, 2, 3, 4, 5]=> select even numbers'
-[1, 2, 3, 4, 5].select do |num|
+[1, 2, 3, 4, 5].my_select do |num|
   puts num if num.even?
 end
