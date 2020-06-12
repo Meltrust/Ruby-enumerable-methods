@@ -43,11 +43,9 @@ module Enumerable
   end
 
   # my_all method
-  def my_all? # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
-    if block_given?
-      my_each { |tf| return false unless yield(tf) }
-    elsif is_a?(Regexp)
-      my_each { return false unless pattern === element } # rubocop:disable Style/CaseEquality
+  def my_all?(par = nil) # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+    if block_given? then my_each { |tf| return false unless yield(tf) }
+    elsif par.is_a?(Regexp) then my_each { |tf| return false unless par === tf } # rubocop:disable Style/CaseEquality
     else my_each { |tf| return false if tf == false || tf.nil? }
     end
     true
@@ -75,8 +73,8 @@ end
 puts 'Testing my all? against %w[antd befsd catd] all elements >= lenght 4?'
 puts(%w[antd befsd catd].my_all? { |word| word.length >= 4 })
 
-puts 'Testing my all? against %w[antd befsd catd] includes pattern /bea/ ?'
-puts(%w[antbea beatr bea].all?(/bea/))
+puts 'Testing my all? against %w[antbea beatr bea] includes pattern /bea/ ?'
+puts(%w[antea batr bea].my_all?(/bea/))
 
 puts 'Testing my all? against [3, 3, nil, "4", 2] no element is false or nil?'
 puts([3, 3, false, '4', 2].my_all?)
