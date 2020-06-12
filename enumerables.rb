@@ -59,4 +59,13 @@ module Enumerable
     end
     false
   end
+
+  # my_none method
+  def my_none?(p = nil) # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+    if block_given? then my_each { |tf| return false if yield(tf) }
+    elsif p.is_a?(Regexp) then my_each { |tf| return false if p === tf } # rubocop:disable Style/CaseEquality
+    else my_each { |tf| return false unless tf == false || tf.nil? }
+    end
+    true
+  end
 end

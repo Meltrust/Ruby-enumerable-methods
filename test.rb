@@ -39,3 +39,13 @@ puts(%w[antea batr bea].my_any?(/bea/))
 
 puts 'Testing my any? against [3, 3, nil, "4", 2] any element is not false or nil?'
 puts([3, 3, false, '4', 2].my_any?)
+
+# testing my_none
+puts 'Testing my none? against %w[antd befsd catd] no element >= lenght 4?'
+puts(%w[antd befsd catd].my_none? { |word| word.length >= 4 })
+
+puts 'Testing my none? against %w[antbea beatr bea] no element includes pattern /bea/ ?'
+puts(%w[antea batr bea].my_none?(/bea/))
+
+puts 'Testing my none? against [false, nil, false, false, nil] no element is true?'
+puts([false, nil, false, false, nil].my_none?)
