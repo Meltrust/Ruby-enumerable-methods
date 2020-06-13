@@ -9,7 +9,7 @@ module Enumerable
     idx = 0
 
     while idx < size
-      yield self[idx]
+      yield to_a[idx]
 
       idx += 1
     end
@@ -34,12 +34,12 @@ module Enumerable
   def my_select
     return to_enum(:my_select) unless block_given?
 
-    select_result = [] if self.class == Array
-    select_result = {} if self.class == Hash
+    select_result = []
 
-    my_each do |x|
-      select_result.push(x) if yield(x)
+    each do |tf|
+      select_result.push(tf) if yield(tf)
     end
+    select_result
   end
 
   # my_all method
@@ -77,5 +77,14 @@ module Enumerable
     else counter = size
     end
     counter
+  end
+
+  # my_map method
+  def my_map
+    return to_enum :my_map unless block_given?
+
+    new_arr = []
+    each { |tf| new_arr.push(yield(tf)) }
+    new_arr
   end
 end
