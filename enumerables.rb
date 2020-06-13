@@ -80,9 +80,16 @@ module Enumerable
   end
 
   # my_map method
-  def my_map(proc)
+  def my_map(proc = nil)
+    return to_enum :my_map if !block_given? && proc.nil?
+
     new_arr = []
-    each { |tf| new_arr.push(proc.call(tf)) }
+
+    if !block_given? then each { |tf| new_arr.push(proc.call(tf)) }
+
+    else each { |tf| new_arr.push(yield(tf)) }
+    end
+
     new_arr
   end
 end
