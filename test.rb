@@ -49,3 +49,16 @@ puts(%w[antea batr bea].my_none?(/bea/))
 
 puts 'Testing my none? against [false, nil, false, false, nil] no element is true?'
 puts([false, nil, false, false, nil].my_none?)
+
+# testing my_counter
+puts 'Testing my count against ary = [1, 2, 4, 5, 6, 8, 10, 2, 2, 3, 4, 3]'
+ary = [1, 2, 4, 5, 6, 8, 10, 2, 2, 3, 4, 3]
+
+puts 'ary.my_count'
+puts(ary.my_count)
+
+puts 'ary.count(2)'
+puts(ary.count(2))
+
+puts 'ary.my_count{ |x| x%2==0 }'
+puts(ary.my_count(&:even?))

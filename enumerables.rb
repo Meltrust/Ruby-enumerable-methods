@@ -68,4 +68,14 @@ module Enumerable
     end
     true
   end
+
+  # my_count method
+  def my_count(*arg)
+    counter = 0
+    if block_given? then my_each { |tf| counter += 1 if yield(tf) }
+    elsif !block_given? && arg.length == 1 then my_each { |tf| counter += 1 if tf == arg[0] }
+    else counter = size
+    end
+    counter
+  end
 end
