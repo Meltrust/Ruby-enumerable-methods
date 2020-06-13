@@ -80,11 +80,9 @@ module Enumerable
   end
 
   # my_map method
-  def my_map
-    return to_enum :my_map unless block_given?
-
+  def my_map(proc)
     new_arr = []
-    each { |tf| new_arr.push(yield(tf)) }
+    each { |tf| new_arr.push(proc.call(tf)) }
     new_arr
   end
 end
