@@ -101,18 +101,16 @@ module Enumerable
     acum = to_a[idx]
     if block_given?
 
-      each_with_index do |_value, index|
-        index = idx # puts "size = #{size}"
+      each do
+        # index = idx# puts "size = #{size}"
         puts ''
-        puts "index = #{index}"
+        puts "idx = #{idx}"
         puts ''
         puts "acum = #{acum}"
 
-        break if index == size - 1
+        break if idx == size - 1
 
-        if index == size - 1 x = yield(acum, self[index]) and print "used the else => #{acum} and #{self[index]} "
-        else then x = yield(acum, to_a[idx + 1]) and print "used first if=> #{acum} and #{to_a[idx]} "
-        end
+        x = yield(acum, to_a[idx + 1]) and print "used first if=> #{acum} and #{to_a[idx]} " unless idx == size - 1
 
         acum = x
         idx += 1
