@@ -94,41 +94,39 @@ module Enumerable
   end
 
   # my_inject method
-  def my_inject(idx=0)
+  def my_inject(idx = 0)
     # p idx
     # p size
     # p self[idx]
-    acum = self[idx]
+    acum = to_a[idx]
     if block_given?
-      
-      each_with_index do |value, index|
-        
-        
-        index = idx# puts "size = #{size}"
-        puts ""
-        puts "index = #{index}"
-        puts ""
-        puts "acum = #{acum}"
-        
-        break if index == size-1
 
-        unless index == size-1 then x = yield(acum, self[idx+1]) and print "used first if=> #{acum} and #{self[idx+1]} "  
-        else x = yield(acum, self[index]) and print "used the else => #{acum} and #{self[index]} " 
+      each_with_index do |_value, index|
+        index = idx # puts "size = #{size}"
+        puts ''
+        puts "index = #{index}"
+        puts ''
+        puts "acum = #{acum}"
+
+        break if index == size - 1
+
+        if index == size - 1 x = yield(acum, self[index]) and print "used the else => #{acum} and #{self[index]} "
+        else then x = yield(acum, to_a[idx + 1]) and print "used first if=> #{acum} and #{to_a[idx]} "
         end
-        
+
         acum = x
-        idx = idx +1
+        idx += 1
         puts "yield result => x = #{x}"
-        
+
         # puts "acum =  #{x}"
         # p acum
-        # acum = acum 
+        # acum = acum
         puts "value after acummulating = #{acum}"
         # idx += 1
         puts ''
         # value = acum
       end
-    end  
-    return acum
+    end
+    acum
   end
 end
