@@ -43,27 +43,27 @@ module Enumerable
   end
 
   # my_all method
-  def my_all?(par = nil) # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+  def my_all?(par = nil)
     if block_given? then my_each { |tf| return false unless yield(tf) }
-    elsif par.is_a?(Regexp) then my_each { |tf| return false unless par === tf } # rubocop:disable Style/CaseEquality
+    elsif par.is_a?(Regexp) then my_each { |tf| return false unless par === tf }
     else my_each { |tf| return false if tf == false || tf.nil? }
     end
     true
   end
 
   # my_any method
-  def my_any?(par = nil) # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+  def my_any?(par = nil)
     if block_given? then my_each { |tf| return true if yield(tf) || tf.nil? }
-    elsif par.is_a?(Regexp) then my_each { |tf| return true if par === tf } # rubocop:disable Style/CaseEquality
+    elsif par.is_a?(Regexp) then my_each { |tf| return true if par === tf }
     else my_each { |tf| return true unless tf == false || tf.nil? }
     end
     false
   end
 
   # my_none method
-  def my_none?(par = nil) # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+  def my_none?(par = nil)
     if block_given? then my_each { |tf| return false if yield(tf) }
-    elsif par.is_a?(Regexp) then my_each { |tf| return false if par === tf } # rubocop:disable Style/CaseEquality
+    elsif par.is_a?(Regexp) then my_each { |tf| return false if par === tf }
     else my_each { |tf| return false unless tf == false || tf.nil? }
     end
     true
@@ -95,21 +95,38 @@ module Enumerable
 
   # my_inject method
   def my_inject(idx = 0)
-    # p idx
-    # p size
-    # p self[idx]
+  # p idx
+  # p size
+  # p self[idx]
+    acum = self[idx]
+  if block_given?
 
-    if block_given?
-      while idx < size
+    each_with_index do |_value, index|
+      # puts "size = #{size}"
+      puts ''
+      puts "index = #{index}"
+      puts ''
+      puts "acum = #{acum}"
 
-        acum = 0 + yield(acum, self[idx])
-        # acum = acum + acum
-        # p acum
-        # acum = acum
-        p acum
-        idx += 1
+      break if index == size - 1
+
+      if index == size - 1 x = yield(acum, self[index]) and print "used the else => #{acum} and #{self[index]} "
+      else then x = yield(acum, self[index + 1]) and print "used first if=> #{acum} and #{self[index + 1]} "
       end
+
+      acum = x
+
+      puts "yield result => x = #{x}"
+
+      # puts "acum =  #{x}"
+      # p acum
+      # acum = acum
+      puts "value after acummulating = #{acum}"
+      # idx += 1
+      puts ''
+      # value = acum
     end
-    acum
   end
+  acum
+end
 end
