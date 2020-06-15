@@ -1,57 +1,35 @@
-# Project Name
+# Home-made Ruby enumerable methods!!
 
-> One paragraph statement about the project.
+> I wrote my own versions of some of the most iconic (and used) Ruby enumerable methods.
 
-![screenshot](./app_screenshot.png)
-
-Additional description about the project and its features.
+To prove that there's no magic to the original Ruby enumerable methods, I rebuilt #each, #each_with_index, #select, #all?, #any?, #none?, #count, #map and #inject.
 
 ## Built With
 
-- Major languages,
-- frameworks,
-- technologies used
-
-## Live Demo
-
-[Live Demo Link](https://livedemo.com)
-
+- Ruby!
+- VsCode
 
 ## Getting Started
 
-**This is an example of how you may give instructions on setting up your project locally.**
-**Modify this file to match your project, remove sections that don't apply. For example: delete the testing section if the currect project doesn't require testing.**
+*To get a local copy up and running follow these simple example steps:
+
+- Clone this repository into your local machine.
+- Run the enumerables.rb by typing this in your command line:
+$ ruby enumerables.rb
 
 
-To get a local copy up and running follow these simple example steps.
+### Validators
 
-### Prerequisites
-
-### Setup
-
-### Install
-
-### Usage
-
-### Run tests
-
-### Deployment
-
-
+- Rubocop
+- Stickler
 
 ## Authors
 
-👤 **Author1**
+👤 **Miguel Tapia Escalera (Meltrust)**
 
-- Github: [@githubhandle](https://github.com/githubhandle)
 - Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- Linkedin: [linkedin](https://linkedin.com/linkedinhandle)
+- Linkedin: [linkedin](https://www.linkedin.com/in/meltrust/)
 
-👤 **Author2**
-
-- Github: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- Linkedin: [linkedin](https://linkedin.com/linkedinhandle)
 
 ## 🤝 Contributing
 
