@@ -92,4 +92,24 @@ module Enumerable
 
     new_arr
   end
+
+  # my_inject method
+  def my_inject(idx = 0)
+    # p idx
+    # p size
+    # p self[idx]
+
+    if block_given?
+      while idx < size
+
+        acum = 0 + yield(acum, self[idx])
+        # acum = acum + acum
+        # p acum
+        # acum = acum
+        p acum
+        idx += 1
+      end
+    end
+    acum
+  end
 end
