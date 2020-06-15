@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Adding methods to the enumerable module
-module Enumerable
+module Enumerable # rubocop:disable Metrics/ModuleLength
   # my_each method
   def my_each
     return to_enum(:my_each) unless block_given?
@@ -43,27 +43,27 @@ module Enumerable
   end
 
   # my_all method
-  def my_all?(par = nil)
+  def my_all?(par = nil) # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
     if block_given? then my_each { |tf| return false unless yield(tf) }
-    elsif par.is_a?(Regexp) then my_each { |tf| return false unless par === tf }
+    elsif par.is_a?(Regexp) then my_each { |tf| return false unless par === tf } # rubocop:disable Style/CaseEquality
     else my_each { |tf| return false if tf == false || tf.nil? }
     end
     true
   end
 
   # my_any method
-  def my_any?(par = nil)
+  def my_any?(par = nil) # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
     if block_given? then my_each { |tf| return true if yield(tf) || tf.nil? }
-    elsif par.is_a?(Regexp) then my_each { |tf| return true if par === tf }
+    elsif par.is_a?(Regexp) then my_each { |tf| return true if par === tf } # rubocop:disable Style/CaseEquality
     else my_each { |tf| return true unless tf == false || tf.nil? }
     end
     false
   end
 
   # my_none method
-  def my_none?(par = nil)
+  def my_none?(par = nil) # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
     if block_given? then my_each { |tf| return false if yield(tf) }
-    elsif par.is_a?(Regexp) then my_each { |tf| return false if par === tf }
+    elsif par.is_a?(Regexp) then my_each { |tf| return false if par === tf } # rubocop:disable Style/CaseEquality
     else my_each { |tf| return false unless tf == false || tf.nil? }
     end
     true
@@ -94,35 +94,49 @@ module Enumerable
   end
 
   # my_inject method
-  def my_inject(idx = 0)
-    # p idx
-    # p size
-    # p self[idx]
-    acum = to_a[idx]
-    if block_given?
-
+  def my_inject(*arg) # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity, Metrics/MethodLength, Metrics/AbcSize
+    idx = 0
+    sym = nil
+    if block_given? && (arg.empty? || arg.length == 1)
+      idx = if arg.empty? then 0
+            else arg[0]
+            end
+      acum = to_a[idx]
       each do
-        # index = idx# puts "size = #{size}"
-        puts ''
-        puts "idx = #{idx}"
-        puts ''
-        puts "acum = #{acum}"
-
         break if idx == size - 1
 
-        x = yield(acum, to_a[idx + 1]) and print "used first if=> #{acum} and #{to_a[idx]} " unless idx == size - 1
-
+        unless idx == size - 1 then (x = yield(acum, to_a[idx + 1]))
+        end
         acum = x
         idx += 1
-        puts "yield result => x = #{x}"
+      end
 
-        # puts "acum =  #{x}"
-        # p acum
-        # acum = acum
-        puts "value after acummulating = #{acum}"
-        # idx += 1
-        puts ''
-        # value = acum
+    elsif arg[0].is_a? Symbol
+      idx = 0
+      sym = arg[0]
+
+      acum = to_a[idx]
+
+      each do
+        break if idx == size - 1
+
+        unless idx == size - 1 then (x = acum.send(sym, to_a[idx + 1]))
+        end
+        acum = x
+        idx += 1
+      end
+
+    elsif arg.length == 2 && !block_given?
+      idx = arg[0]
+      sym = arg[1]
+      acum = to_a[idx]
+      each do
+        break if idx == size - 1
+
+        unless idx == size - 1 then (x = acum.send(sym, to_a[idx + 1]))
+        end
+        acum = x
+        idx += 1
       end
     end
     acum
