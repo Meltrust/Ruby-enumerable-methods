@@ -11,7 +11,7 @@ To prove that there's no magic to the original Ruby enumerable methods, I rebuil
 
 ## Getting Started
 
-*To get a local copy up and running follow these simple example steps:
+To get a local copy up and running follow these simple example steps:
 
 - Clone this repository into your local machine.
 - Run the enumerables.rb by typing this in your command line:
