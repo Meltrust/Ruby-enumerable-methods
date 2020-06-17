@@ -24,10 +24,11 @@ module Enumerable # rubocop:disable Metrics/ModuleLength
     each_idx = 0
 
     while each_idx < size
-      yield(self[each_idx], each_idx)
+      yield(to_a[each_idx], each_idx)
 
       each_idx += 1
     end
+    self
   end
 
   # my_select method
