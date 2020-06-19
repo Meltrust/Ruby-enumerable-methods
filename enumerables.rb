@@ -100,25 +100,21 @@ module Enumerable # rubocop:disable Metrics/ModuleLength
     idx = 0
     sym = nil
     if block_given? && (arg.empty? || arg.length == 1)
-      idx = if arg.empty? then 0
-            else arg[0]
-            end
-      acum = to_a[idx]
+      acum = arg.empty? ? to_a[idx] : arg[0]
       each do
-        break if idx == size - 1
+        break if idx == (size - 1) && arg.empty?
 
-        unless idx == size - 1 then (x = yield(acum, to_a[idx + 1]))
+        if arg.empty?
+          (x = yield(acum, to_a[idx + 1]))
+        else x = yield(acum, to_a[idx])
         end
         acum = x
         idx += 1
       end
-
-    elsif arg[0].is_a? Symbol
+    elsif arg.length == 1 && (arg[0].is_a? Symbol)
       idx = 0
       sym = arg[0]
-
       acum = to_a[idx]
-
       each do
         break if idx == size - 1
 
@@ -127,19 +123,15 @@ module Enumerable # rubocop:disable Metrics/ModuleLength
         acum = x
         idx += 1
       end
-
     elsif arg.length == 2 && !block_given?
-      idx = arg[0]
       sym = arg[1]
-      acum = to_a[idx]
+      acum = arg[0]
       each do
-        break if idx == size - 1
-
-        unless idx == size - 1 then (x = acum.send(sym, to_a[idx + 1]))
-        end
+        (x = acum.send(sym, to_a[idx]))
         acum = x
         idx += 1
       end
+    elsif !block_given? && arg.empty? then raise(LocalJumpError, 'no block given')
     end
     acum
   end
