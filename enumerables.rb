@@ -131,7 +131,8 @@ module Enumerable # rubocop:disable Metrics/ModuleLength
         acum = x
         idx += 1
       end
-    elsif !block_given? && arg.empty? then raise(LocalJumpError, 'no block given')
+    elsif !block_given? && arg.empty?
+      raise(LocalJumpError, 'no block given')
     end
     acum
   end
