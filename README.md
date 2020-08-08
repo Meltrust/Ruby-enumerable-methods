@@ -1,12 +1,13 @@
 # Home-made Ruby enumerable methods!!
 
-> I wrote my own versions of some of the most iconic (and used) Ruby enumerable methods.
+> I wrote my own versions of some of the most iconic (and used) Ruby enumerable methods.  Implemented RSpec tests for all.
 
-To prove that there's no magic to the original Ruby enumerable methods, I rebuilt #each, #each_with_index, #select, #all?, #any?, #none?, #count, #map and #inject.
+To prove that there's no magic to the original Ruby enumerable methods, I rebuilt #each, #each_with_index, #select, #all?, #any?, #none?, #count, #map and #inject.  Then I wrote RSpec tests for all.
 
 ## Built With
 
 - Ruby!
+- RSpec
 - VsCode
 
 ## Getting Started
@@ -22,6 +23,10 @@ $ ruby enumerables.rb
 
 - Rubocop
 - Stickler
+
+### Testing tool
+
+- RSpec
 
 ## Authors
 
