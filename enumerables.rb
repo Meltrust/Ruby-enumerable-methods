@@ -42,7 +42,6 @@ module Enumerable # rubocop:disable Metrics/ModuleLength
   end
 
   # my_all method
-
   def my_all?(par = nil) # rubocop:disable Metrics/PerceivedComplexity
     if block_given? then my_each { |tf| return false unless yield(tf) }
     elsif par.is_a?(Regexp) then my_each { |tf| return false unless par === tf } # rubocop:disable Style/CaseEquality
