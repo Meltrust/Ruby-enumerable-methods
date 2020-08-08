@@ -1,8 +1,6 @@
-# frozen_string_literal: true
-
 require './enumerables.rb'
 
-describe Enumerable do # rubocop:disable Metrics/BlockLength
+describe Enumerable do
   # main testing variables
   let(:arr1) { %w[dog bear cat] }
   let(:arr2) { [true, nil, 90] }
