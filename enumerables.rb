@@ -42,7 +42,7 @@ module Enumerable # rubocop:disable Metrics/ModuleLength
   end
 
   # my_all method
-  def my_all?(par = nil) # rubocop:disable Metrics/PerceivedComplexity
+  def my_all?(par = nil) # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
     if block_given? then my_each { |tf| return false unless yield(tf) }
     elsif par.is_a?(Regexp) then my_each { |tf| return false unless par === tf } # rubocop:disable Style/CaseEquality
     else my_each { |tf| return false if tf == false || tf.nil? }
@@ -60,7 +60,7 @@ module Enumerable # rubocop:disable Metrics/ModuleLength
   end
 
   # my_none method
-  def my_none?(par = nil) # rubocop:disable Metrics/PerceivedComplexity
+  def my_none?(par = nil) # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
     if block_given? then my_each { |tf| return false if yield(tf) }
     elsif par.is_a?(Regexp) then my_each { |tf| return false if par === tf } # rubocop:disable Style/CaseEquality
     else my_each { |tf| return false unless tf == false || tf.nil? }
