@@ -4,6 +4,8 @@
 
 To prove that there's no magic to the original Ruby enumerable methods, I rebuilt #each, #each_with_index, #select, #all?, #any?, #none?, #count, #map and #inject.  Then I wrote RSpec tests for all.
 
+![screenshot](demo.gif)
+
 ## Built With
 
 - Ruby!
