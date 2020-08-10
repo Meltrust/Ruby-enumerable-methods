@@ -1,4 +1,4 @@
-require './enumerables.rb'
+require_relative '../enumerables.rb'
 
 describe Enumerable do
   # main testing variables
