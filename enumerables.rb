@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # Adding methods to the enumerable module
 module Enumerable # rubocop:disable Metrics/ModuleLength
   # my_each method
