@@ -16,9 +16,20 @@ To prove that there's no magic to the original Ruby enumerable methods, I rebuil
 
 To get a local copy up and running follow these simple example steps:
 
-- Clone this repository into your local machine.
+- Be sure to have [ruby](https://www.ruby-lang.org/en/documentation/installation/) installed in your machine.
+- Clone this repository into an empty directory of your choice.
 - Run the enumerables.rb by typing this in your command line:
+```bash
 $ ruby enumerables.rb
+```
+
+## Running the RSpec tests
+
+- Install and run RSpec in the root directory of the project:
+```bash
+$ gem install rspec
+$ rspec spec/enumerable_spec.rb
+```
 
 
 ### Validators
